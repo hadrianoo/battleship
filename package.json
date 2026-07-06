@@ -1,5 +1,5 @@
 {
-  "name": "my-template",
+  "name": "battleship",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hadrianoo/my-template.git"
+    "url": "git+https://github.com/hadrianoo/battleship.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/hadrianoo/my-template/issues"
+    "url": "https://github.com/hadrianoo/battleship/issues"
   },
-  "homepage": "https://github.com/hadrianoo/my-template#readme",
+  "homepage": "https://github.com/hadrianoo/battleship#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.29.5",
     "@eslint/css": "^1.2.0",
