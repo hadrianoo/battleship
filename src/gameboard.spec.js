@@ -44,4 +44,21 @@ describe("test gameboard factory", () => {
     expect(gameboard.getMissedShots()).not.toContain([3, 6]);
     expect(gameboard.getMissedShots()).toEqual([[6, 6]]);
   });
+  test("second ship in arrray receive attack", () => {
+    const gameboard = GameBoard();
+    gameboard.addShip([
+      [3, 6],
+      [4, 6],
+    ]);
+    gameboard.addShip([
+      [1, 1],
+      [1, 2],
+      [1, 3],
+    ]);
+
+    gameboard.receiveAttack([1, 1]);
+    gameboard.receiveAttack([1, 2]);
+    gameboard.receiveAttack([1, 3]);
+    expect(gameboard.getShips()[1].ship.isSunk()).toEqual(true);
+  });
 });
