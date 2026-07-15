@@ -1,0 +1,9 @@
+.leftGameBoard {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+}
+.leftGameBoard > div {
+  border: 1px solid red;
+}

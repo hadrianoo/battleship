@@ -18,6 +18,12 @@ export function GameBoard() {
         ship: Ship(position.length),
       });
     },
+    getGameBoardSize() {
+      return {
+        x: BOARD_SIZE_X,
+        y: BOARD_SIZE_Y,
+      };
+    },
     getShips() {
       return shipOnBoard;
     },
