@@ -1,24 +1,26 @@
 import "./styles.css";
 import { Player } from "./player.js";
-import { gameBoardDOM } from "./gameboard-dom.js";
+import {
+  createGameBoardDOM,
+  populateGameBoardDOMWithShips,
+} from "./gameboard-dom.js";
 
 function game() {
   const player1 = Player("real");
   const player2 = Player("computer");
 
+  player1.gameBoard.addShip([
+    [1, 1],
+    [1, 2],
+    [1, 3],
+    [1, 4],
+    [1, 5],
+  ]);
+
   const leftGameBoard = document.querySelector(".leftGameBoard");
   const rightGameBoard = document.querySelector(".rightGameBoard");
-  const player1GameBoard = gameBoardDOM(
-    leftGameBoard,
-    player1.gameBoard.getShips(),
-    player1.gameBoard.getMissedShots(),
-    player1.gameBoard.getGameBoardSize(),
-  );
-  const player2GameBoard = gameBoardDOM(
-    rightGameBoard,
-    player2.gameBoard.getShips(),
-    player2.gameBoard.getMissedShots(),
-    player2.gameBoard.getGameBoardSize(),
-  );
+  createGameBoardDOM(leftGameBoard, player1.gameBoard.getGameBoardSize());
+  createGameBoardDOM(rightGameBoard, player2.gameBoard.getGameBoardSize());
+  console.log(leftGameBoard.childNodes[0].attributes["data-x"].value);
 }
 game();

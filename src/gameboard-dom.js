@@ -1,6 +1,4 @@
-export function gameBoardDOM(parent, shipBoard, missedBoard, boardSize) {
-  const wrapper = document.createElement("div");
-  wrapper.className = "wrapper";
+function createGameBoardDOM(parent, boardSize) {
   let counterForX = 1;
   let counterForY = 1;
   for (let i = 1; i <= boardSize.x * boardSize.y; i++) {
@@ -16,3 +14,5 @@ export function gameBoardDOM(parent, shipBoard, missedBoard, boardSize) {
   }
   return parent;
 }
+function populateGameBoardDOMWithShips(parent, player) {}
+export { createGameBoardDOM, populateGameBoardDOMWithShips };
