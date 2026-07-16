@@ -12,14 +12,15 @@ function createGameBoardDOM(parent, boardSize) {
       counterForX = 1;
     }
   }
-  return parent;
 }
 function populateGameBoardDOMWithShips(parent, player) {
   for (const shipObj of player.gameBoard.getShips()) {
     for (const position of shipObj.position) {
-      for (const domTile of parent.childNodes) {
-        console.log(domTile);
-      }
+      const [posX, posY] = position;
+      const element = parent.querySelector(
+        `[data-x="${posX}"][data-y="${posY}"]`,
+      );
+      element.dataset.ship = true;
     }
   }
 }

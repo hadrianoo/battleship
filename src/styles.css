@@ -13,3 +13,7 @@
 .rightGameBoard > div {
   border: 1px solid black;
 }
+
+div[data-ship="true"] {
+  background-color: blue;
+}

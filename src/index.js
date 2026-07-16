@@ -17,17 +17,17 @@ function game() {
     [1, 5],
   ]);
   player1.gameBoard.addShip([
-    [2, 1],
-    [2, 2],
-    [2, 3],
-    [2, 4],
+    [4, 2],
+    [4, 3],
+    [4, 4],
+    [4, 5],
   ]);
 
   const leftGameBoard = document.querySelector(".leftGameBoard");
   const rightGameBoard = document.querySelector(".rightGameBoard");
   createGameBoardDOM(leftGameBoard, player1.gameBoard.getGameBoardSize());
   createGameBoardDOM(rightGameBoard, player2.gameBoard.getGameBoardSize());
-  // console.log(leftGameBoard.childNodes[0].attributes["data-x"].value);
+
   populateGameBoardDOMWithShips(leftGameBoard, player1);
 }
 game();
