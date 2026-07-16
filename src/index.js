@@ -14,5 +14,11 @@ function game() {
     player1.gameBoard.getMissedShots(),
     player1.gameBoard.getGameBoardSize(),
   );
+  const player2GameBoard = gameBoardDOM(
+    rightGameBoard,
+    player2.gameBoard.getShips(),
+    player2.gameBoard.getMissedShots(),
+    player2.gameBoard.getGameBoardSize(),
+  );
 }
 game();
