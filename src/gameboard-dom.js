@@ -14,5 +14,13 @@ function createGameBoardDOM(parent, boardSize) {
   }
   return parent;
 }
-function populateGameBoardDOMWithShips(parent, player) {}
+function populateGameBoardDOMWithShips(parent, player) {
+  for (const shipObj of player.gameBoard.getShips()) {
+    for (const position of shipObj.position) {
+      for (const domTile of parent.childNodes) {
+        console.log(domTile);
+      }
+    }
+  }
+}
 export { createGameBoardDOM, populateGameBoardDOMWithShips };
