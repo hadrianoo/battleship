@@ -22,12 +22,70 @@ function game() {
     [4, 4],
     [4, 5],
   ]);
+  player1.gameBoard.addShip([
+    [1, 8],
+    [2, 8],
+    [3, 8],
+    [4, 8],
+  ]);
 
+  player1.gameBoard.addShip([
+    [6, 6],
+    [7, 6],
+    [8, 6],
+  ]);
+  player1.gameBoard.addShip([
+    [6, 9],
+    [7, 9],
+    [8, 9],
+  ]);
+  player1.gameBoard.addShip([
+    [9, 2],
+    [9, 3],
+    [9, 4],
+  ]);
+
+  player2.gameBoard.addShip([
+    [2, 1],
+    [2, 2],
+    [2, 3],
+    [2, 4],
+    [2, 5],
+  ]);
+  player2.gameBoard.addShip([
+    [5, 2],
+    [5, 3],
+    [5, 4],
+    [5, 5],
+  ]);
+  player2.gameBoard.addShip([
+    [1, 7],
+    [2, 7],
+    [3, 7],
+    [4, 7],
+  ]);
+
+  player2.gameBoard.addShip([
+    [6, 7],
+    [7, 7],
+    [8, 7],
+  ]);
+  player2.gameBoard.addShip([
+    [2, 9],
+    [3, 9],
+    [4, 9],
+  ]);
+  player2.gameBoard.addShip([
+    [8, 2],
+    [8, 3],
+    [8, 4],
+  ]);
   const leftGameBoard = document.querySelector(".leftGameBoard");
   const rightGameBoard = document.querySelector(".rightGameBoard");
   createGameBoardDOM(leftGameBoard, player1.gameBoard.getGameBoardSize());
   createGameBoardDOM(rightGameBoard, player2.gameBoard.getGameBoardSize());
 
   populateGameBoardDOMWithShips(leftGameBoard, player1);
+  populateGameBoardDOMWithShips(rightGameBoard, player2);
 }
 game();
