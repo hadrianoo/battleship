@@ -99,7 +99,6 @@ function game() {
   populateGameBoardDOMWithShips(playerTwoGameBoard, player2);
 
   playerOneAttackBoard.addEventListener("click", (event) => {
-    console.log(event.target.getAttribute("class"));
     if (event.target.getAttribute("class") === "playerOneAttackBoard") return;
     const shipStatus = event.target.dataset.ship;
     const hitStatus = event.target.dataset.hit;
@@ -111,6 +110,7 @@ function game() {
     if (playerTwoPosition.dataset.ship && !playerTwoPosition.dataset.hit) {
       event.target.dataset.hit = "true";
       playerTwoPosition.dataset.hit = "true";
+
       console.log(typeof playerTwoPosition.dataset.hit);
     }
   });

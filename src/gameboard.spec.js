@@ -61,4 +61,23 @@ describe("test gameboard factory", () => {
     gameboard.receiveAttack([1, 3]);
     expect(gameboard.getShips()[1].ship.isSunk()).toEqual(true);
   });
+  test("if ship receive accurate attack save it", () => {
+    const gameboard = GameBoard();
+    gameboard.addShip([
+      [3, 6],
+      [4, 6],
+    ]);
+    gameboard.addShip([
+      [1, 1],
+      [1, 2],
+      [1, 3],
+    ]);
+
+    gameboard.receiveAttack([1, 1]);
+    gameboard.receiveAttack([1, 2]);
+    gameboard.receiveAttack([1, 3]);
+    expect(gameboard.getShips()[1].ship.isSunk()).toEqual(true);
+    expect(gameboard.getAccurateShots()[0]).toEqual([1, 1]);
+    expect(gameboard.getAccurateShots()[2]).toEqual([1, 3]);
+  });
 });

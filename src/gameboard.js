@@ -5,6 +5,7 @@ export function GameBoard() {
 
   let shipOnBoard = [];
   let missedShots = [];
+  let accurateShots = [];
   const shipName = [
     { size: 5, name: "Carrier" },
     { size: 4, name: "Battleship" },
@@ -30,6 +31,9 @@ export function GameBoard() {
     getMissedShots() {
       return missedShots;
     },
+    getAccurateShots() {
+      return accurateShots;
+    },
     receiveAttack(position) {
       let shipHit = false;
       const [attackX, attackY] = position;
@@ -38,6 +42,7 @@ export function GameBoard() {
           const [onPositionX, onPositionY] = shipPos;
           if (attackX === onPositionX && attackY === onPositionY) {
             ship.ship.hit();
+            accurateShots.push(position);
             shipHit = true;
           }
         }
