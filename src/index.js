@@ -3,6 +3,7 @@ import { Player } from "./player.js";
 import {
   createGameBoardDOM,
   populateGameBoardDOMWithShips,
+  populateGameBoardDOMWithShots,
 } from "./gameboard-dom.js";
 
 function game() {
@@ -104,15 +105,20 @@ function game() {
     const hitStatus = event.target.dataset.hit;
     const posX = event.target.dataset.x;
     const posY = event.target.dataset.y;
-    const playerTwoPosition = playerTwoGameBoard.querySelector(
-      `[data-x="${posX}"][data-y="${posY}"]`,
-    );
-    if (playerTwoPosition.dataset.ship && !playerTwoPosition.dataset.hit) {
-      event.target.dataset.hit = "true";
-      playerTwoPosition.dataset.hit = "true";
 
-      console.log(typeof playerTwoPosition.dataset.hit);
-    }
+    player2.gameBoard.receiveAttack([posX, posY]);
+    populateGameBoardDOMWithShots(playerOneAttackBoard, player2);
+  });
+
+  playerTwoAttackBoard.addEventListener("click", (event) => {
+    if (event.target.getAttribute("class") === "playerTwoAttackBoard") return;
+    const shipStatus = event.target.dataset.ship;
+    const hitStatus = event.target.dataset.hit;
+    const posX = event.target.dataset.x;
+    const posY = event.target.dataset.y;
+
+    player1.gameBoard.receiveAttack([posX, posY]);
+    populateGameBoardDOMWithShots(playerTwoAttackBoard, player1);
   });
 }
 game();

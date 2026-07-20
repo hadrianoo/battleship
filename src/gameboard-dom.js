@@ -23,7 +23,29 @@ function populateGameBoardDOMWithShips(parent, player) {
       );
       element.dataset.ship = true;
       element.dataset.hit = "";
+      element.dataset.miss = "";
     }
   }
 }
-export { createGameBoardDOM, populateGameBoardDOMWithShips };
+
+function populateGameBoardDOMWithShots(parent, player) {
+  for (const shot of player.gameBoard.getAccurateShots()) {
+    const [posX, posY] = shot;
+    const element = parent.querySelector(
+      `[data-x="${posX}"][data-y="${posY}"]`,
+    );
+    element.dataset.hit = "true";
+  }
+  for (const shot of player.gameBoard.getMissedShots()) {
+    const [posX, posY] = shot;
+    const element = parent.querySelector(
+      `[data-x="${posX}"][data-y="${posY}"]`,
+    );
+    element.dataset.miss = "true";
+  }
+}
+export {
+  createGameBoardDOM,
+  populateGameBoardDOMWithShips,
+  populateGameBoardDOMWithShots,
+};

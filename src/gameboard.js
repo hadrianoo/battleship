@@ -40,7 +40,7 @@ export function GameBoard() {
       for (const ship of shipOnBoard) {
         for (const shipPos of ship.position) {
           const [onPositionX, onPositionY] = shipPos;
-          if (attackX === onPositionX && attackY === onPositionY) {
+          if (+attackX === onPositionX && +attackY === onPositionY) {
             ship.ship.hit();
             accurateShots.push(position);
             shipHit = true;

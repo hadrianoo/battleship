@@ -60,6 +60,9 @@ div[data-ship="true"] {
 div[data-hit="true"] {
   background-color: red;
 }
+div[data-miss="true"] {
+  background-color: grey;
+}
 
 .player1,
 .player2 {
