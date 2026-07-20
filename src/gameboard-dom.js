@@ -1,3 +1,5 @@
+function legend() {}
+
 function createGameBoardDOM(parent, boardSize) {
   let counterForX = 1;
   let counterForY = 1;
@@ -13,6 +15,7 @@ function createGameBoardDOM(parent, boardSize) {
     }
   }
 }
+
 function populateGameBoardDOMWithShips(parent, player) {
   for (const shipObj of player.gameBoard.getShips()) {
     for (const position of shipObj.position) {
@@ -21,6 +24,7 @@ function populateGameBoardDOMWithShips(parent, player) {
         `[data-x="${posX}"][data-y="${posY}"]`,
       );
       element.dataset.ship = true;
+      element.dataset.hit = false;
     }
   }
 }

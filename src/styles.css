@@ -1,19 +1,66 @@
+body {
+  display: flex;
+  gap: 20px;
+}
+.legend > div {
+  display: flex;
+  gap: 4px;
+}
+
+.ship,
+.hit,
+.miss,
+.playerTurn {
+  width: 10px;
+  height: 10px;
+  align-self: center;
+}
+
+.ship {
+  background-color: blue;
+}
+
+.hit {
+  background-color: red;
+}
+
+.miss {
+  background-color: grey;
+}
+
+.playerTurn {
+  background-color: green;
+}
+
 .game {
+  position: relative;
   display: flex;
   gap: 100px;
 }
 
-.leftGameBoard,
-.rightGameBoard {
+.playerOneGameBoard,
+.playerTwoGameBoard,
+.playerOneAttackBoard,
+.playerTwoAttackBoard {
   display: grid;
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
 }
-.leftGameBoard > div,
-.rightGameBoard > div {
+
+.playerOneGameBoard > div,
+.playerTwoGameBoard > div,
+.playerOneAttackBoard > div,
+.playerTwoAttackBoard > div {
   border: 1px solid black;
 }
 
 div[data-ship="true"] {
   background-color: blue;
+}
+
+.player1,
+.player2 {
+  position: absolute;
+  top: 320px;
+  left: 100px;
 }

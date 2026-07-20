@@ -78,12 +78,34 @@ function game() {
     [8, 4],
   ]);
 
-  const leftGameBoard = document.querySelector(".leftGameBoard");
-  const rightGameBoard = document.querySelector(".rightGameBoard");
-  createGameBoardDOM(leftGameBoard, player1.gameBoard.getGameBoardSize());
-  createGameBoardDOM(rightGameBoard, player2.gameBoard.getGameBoardSize());
+  const playerOneGameBoard = document.querySelector(".playerOneGameBoard");
+  const playerOneAttackBoard = document.querySelector(".playerOneAttackBoard");
+  const playerTwoGameBoard = document.querySelector(".playerTwoGameBoard");
+  const playerTwoAttackBoard = document.querySelector(".playerTwoAttackBoard");
 
-  populateGameBoardDOMWithShips(leftGameBoard, player1);
-  populateGameBoardDOMWithShips(rightGameBoard, player2);
+  createGameBoardDOM(playerOneGameBoard, player1.gameBoard.getGameBoardSize());
+  createGameBoardDOM(
+    playerOneAttackBoard,
+    player2.gameBoard.getGameBoardSize(),
+  );
+
+  createGameBoardDOM(playerTwoGameBoard, player2.gameBoard.getGameBoardSize());
+  createGameBoardDOM(
+    playerTwoAttackBoard,
+    player1.gameBoard.getGameBoardSize(),
+  );
+
+  populateGameBoardDOMWithShips(playerOneGameBoard, player1);
+  populateGameBoardDOMWithShips(playerTwoGameBoard, player2);
+
+  playerOneGameBoard.addEventListener("click", (event) => {
+    const shipStatus = event.target.dataset.ship;
+    const hitStatus = event.target.dataset.hit;
+    const posX = event.target.dataset.x;
+    const poxY = event.target.dataset.y;
+    if (shipStatus && hitStatus) {
+      console.log(event.target.dataset.ship);
+    }
+  });
 }
 game();
