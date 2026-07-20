@@ -35,7 +35,7 @@ body {
 .game {
   position: relative;
   display: flex;
-  gap: 100px;
+  gap: 30px;
 }
 
 .playerOneGameBoard,
@@ -56,6 +56,9 @@ body {
 
 div[data-ship="true"] {
   background-color: blue;
+}
+div[data-hit="true"] {
+  background-color: red;
 }
 
 .player1,

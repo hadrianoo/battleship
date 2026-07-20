@@ -98,13 +98,20 @@ function game() {
   populateGameBoardDOMWithShips(playerOneGameBoard, player1);
   populateGameBoardDOMWithShips(playerTwoGameBoard, player2);
 
-  playerOneGameBoard.addEventListener("click", (event) => {
+  playerOneAttackBoard.addEventListener("click", (event) => {
+    console.log(event.target.getAttribute("class"));
+    if (event.target.getAttribute("class") === "playerOneAttackBoard") return;
     const shipStatus = event.target.dataset.ship;
     const hitStatus = event.target.dataset.hit;
     const posX = event.target.dataset.x;
-    const poxY = event.target.dataset.y;
-    if (shipStatus && hitStatus) {
-      console.log(event.target.dataset.ship);
+    const posY = event.target.dataset.y;
+    const playerTwoPosition = playerTwoGameBoard.querySelector(
+      `[data-x="${posX}"][data-y="${posY}"]`,
+    );
+    if (playerTwoPosition.dataset.ship && !playerTwoPosition.dataset.hit) {
+      event.target.dataset.hit = "true";
+      playerTwoPosition.dataset.hit = "true";
+      console.log(typeof playerTwoPosition.dataset.hit);
     }
   });
 }
