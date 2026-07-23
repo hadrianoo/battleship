@@ -4,11 +4,13 @@ import {
   createGameBoardDOM,
   populateGameBoardDOMWithShips,
   populateGameBoardDOMWithShots,
+  computerPlayer,
 } from "./gameboard-dom.js";
 
 function game() {
-  const player1 = Player("real");
-  const player2 = Player("computer");
+  const player1 = Player("left");
+  const player2 = Player("right");
+  let currentPlayer = player1.playerType;
 
   player1.gameBoard.addShip([
     [1, 1],
@@ -99,26 +101,46 @@ function game() {
   populateGameBoardDOMWithShips(playerOneGameBoard, player1);
   populateGameBoardDOMWithShips(playerTwoGameBoard, player2);
 
+  function attackEvent(event, className, player, attackBoard) {
+    const posX = event.target.dataset.x;
+    const posY = event.target.dataset.y;
+
+    const hit = player.gameBoard.receiveAttack([posX, posY]);
+    populateGameBoardDOMWithShots(attackBoard, player);
+    if (hit) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function computer() {
+    const computerPosition = computerPlayer(
+      player2.gameBoard.getAccurateShots(),
+      player2.gameBoard.getMissedShots(),
+      player2.gameBoard.getGameBoardSize(),
+    );
+    const accurateHit = player1.gameBoard.receiveAttack([
+      computerPosition.randomX,
+      computerPosition.randomY,
+    ]);
+    populateGameBoardDOMWithShots(playerTwoAttackBoard, player1);
+    if (accurateHit) computer();
+  }
+
   playerOneAttackBoard.addEventListener("click", (event) => {
     if (event.target.getAttribute("class") === "playerOneAttackBoard") return;
-    const shipStatus = event.target.dataset.ship;
-    const hitStatus = event.target.dataset.hit;
     const posX = event.target.dataset.x;
     const posY = event.target.dataset.y;
-
-    player2.gameBoard.receiveAttack([posX, posY]);
+    const hit = player2.gameBoard.receiveAttack([posX, posY]);
     populateGameBoardDOMWithShots(playerOneAttackBoard, player2);
-  });
 
-  playerTwoAttackBoard.addEventListener("click", (event) => {
-    if (event.target.getAttribute("class") === "playerTwoAttackBoard") return;
-    const shipStatus = event.target.dataset.ship;
-    const hitStatus = event.target.dataset.hit;
-    const posX = event.target.dataset.x;
-    const posY = event.target.dataset.y;
-
-    player1.gameBoard.receiveAttack([posX, posY]);
-    populateGameBoardDOMWithShots(playerTwoAttackBoard, player1);
+    if (hit) {
+      currentPlayer = player1.playerType;
+    } else {
+      currentPlayer = player2.playerType;
+      computer();
+    }
   });
 }
 game();

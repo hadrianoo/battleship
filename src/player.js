@@ -1,7 +1,8 @@
 import { GameBoard } from "./gameboard.js";
 
-export function Player(playerType = "real") {
+export function Player(playerType) {
   return {
     gameBoard: GameBoard(),
+    playerType,
   };
 }

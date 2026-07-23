@@ -44,8 +44,23 @@ function populateGameBoardDOMWithShots(parent, player) {
     element.dataset.miss = "true";
   }
 }
+
+function computerPlayer(accurateShots, missedShots, boardSize) {
+  const array = [...accurateShots, ...missedShots];
+  const randomX = 1 + Math.floor(Math.random() * boardSize.x);
+  const randomY = 1 + Math.floor(Math.random() * boardSize.y);
+  for (const pos of array) {
+    const [x, y] = pos;
+    if (x === randomX && y === randomY) {
+      return computerPlayer(accurateShots, missedShots, boardSize);
+    }
+  }
+  return { randomX, randomY };
+}
+
 export {
   createGameBoardDOM,
   populateGameBoardDOMWithShips,
   populateGameBoardDOMWithShots,
+  computerPlayer,
 };

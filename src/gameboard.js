@@ -35,19 +35,19 @@ export function GameBoard() {
       return accurateShots;
     },
     receiveAttack(position) {
-      let shipHit = false;
       const [attackX, attackY] = position;
       for (const ship of shipOnBoard) {
         for (const shipPos of ship.position) {
           const [onPositionX, onPositionY] = shipPos;
           if (+attackX === onPositionX && +attackY === onPositionY) {
             ship.ship.hit();
-            accurateShots.push(position);
-            shipHit = true;
+            accurateShots.push([+attackX, +attackY]);
+            return true;
           }
         }
       }
-      if (shipHit === false) missedShots.push(position);
+      missedShots.push([+attackX, +attackY]);
+      return false;
     },
   };
 }
